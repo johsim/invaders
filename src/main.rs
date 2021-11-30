@@ -14,13 +14,12 @@ use std::time::{Duration, Instant};
 use std::{io, thread};
 
 fn initialize_audio() -> Audio {
+    let sounds: Vec<&str> = vec!["explode", "lose", "move", "pew", "startup", "win"];
     let mut audio = Audio::new();
-    audio.add("explode", "explode.wav");
-    audio.add("lose", "lose.wav");
-    audio.add("move", "move.wav");
-    audio.add("pew", "pew.wav");
-    audio.add("startup", "startup.wav");
-    audio.add("win", "win.wav");
+
+    for sound in sounds {
+        audio.add(sound, &format!("{}.wav", sound.to_string()))
+    }
     audio
 }
 
